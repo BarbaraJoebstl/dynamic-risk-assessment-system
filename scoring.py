@@ -45,6 +45,7 @@ def score_model():
         with open(score_file, "w") as f:
             f.write(str(f1))
         logger.info(f"Saved F1 {f1:.6f} score to: {score_file}")
+        return f1
 
     except Exception as e:
         logger.exception(f"Model scoring failed: {e}")

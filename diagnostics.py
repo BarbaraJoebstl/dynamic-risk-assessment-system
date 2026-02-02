@@ -68,7 +68,10 @@ def missing_data():
     # percentage of missing values per column
     na_percentages = (df.isna().sum() / len(df)) * 100
 
-    return list(na_percentages)
+    missing_list = [{"column": col, "na_percent": float(pct)} for col, pct in na_percentages.items()]
+
+    logger.info(f"NAs for every col: {missing_list}")
+    return missing_list
 
 
 ##################Function to get timings
