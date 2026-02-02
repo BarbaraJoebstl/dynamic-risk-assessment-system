@@ -6,7 +6,7 @@ import json
 # Specify a URL that resolves to your workspace
 URL = "http://0.0.0.0:8000"
 
-test_data_set = os.path.join(config.test_data_path, "testdata.csv")
+test_data_set = os.path.join(config.input_folder_path, "finaldata.csv")
 
 
 # Call each API endpoint and store the responses
@@ -24,7 +24,9 @@ responses = {
 }
 
 # write the responses to your workspace
-output_file = "api_responses.json"
+
+output_file = os.path.join(config.output_model_path, "api_responses.json")
+
 with open(output_file, "w") as f:
     json.dump(responses, f, indent=2)
 

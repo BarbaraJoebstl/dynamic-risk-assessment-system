@@ -1,0 +1,1 @@
+*/10 * * * * /opt/homebrew/anaconda3/envs/ml-flask-env/bin/python /Users/me/mystuff/dynamic-risk-assessment-system/fullprocess.py >> Users/me/mystuff/dynamic-risk-assessment-system/cron.log 2>&1

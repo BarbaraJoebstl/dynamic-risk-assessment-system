@@ -119,7 +119,7 @@ def outdated_packages_list():
 
 
 if __name__ == "__main__":
-    test_data_set = os.path.join(config.test_data_path, "testdata.csv")
+    test_data_set = os.path.join(config.output_folder_path, "finaldata.csv")
     df = pd.read_csv(test_data_set)
     model_predictions(df)
     dataframe_summary()
