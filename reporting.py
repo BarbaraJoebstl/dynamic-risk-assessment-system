@@ -1,33 +1,40 @@
-import pickle
-from sklearn.model_selection import train_test_split
 import pandas as pd
-import numpy as np
-from sklearn import metrics
-import matplotlib.pyplot as plt
 import seaborn as sns
-import json
+from sklearn.metrics import confusion_matrix
+from diagnostics import model_predictions
+import matplotlib.pyplot as plt
 import os
 from config import config
 from logger_config import logger
 
 
-###############Load config.json and get path variables
-with open('config.json','r') as f:
-    config = json.load(f) 
-
-dataset_csv_path = os.path.join(config['output_folder_path']) 
-
-
-
-
 ##############Function for reporting
 def score_model():
-    #calculate a confusion matrix using the test data and the deployed model
-    #write the confusion matrix to the workspace
+    # calculate a confusion matrix using the test data and the deployed model
+    # write the confusion matrix to the workspace
+    # read the deployed model and a test dataset, calculate predictions
+    logger.info("Starting to generate confusion matrix")
+    test_data_set = os.path.join(config.test_data_path, "testdata.csv")
+    df = pd.read_csv(test_data_set)
+
+    y_pred = model_predictions(df)
+    # Get true labels (pandas Series)
+    y_test = df[config.target]
+
+    cm = confusion_matrix(y_test, y_pred)
+
+    # Plot using seaborn
+    plt.figure(figsize=(6, 5))
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+    plt.title("Confusion Matrix")
+    plt.ylabel("Actual")
+    plt.xlabel("Predicted")
+
+    output_file = os.path.join(config.output_model_path, "confusionmatrix.png")
+    plt.savefig(output_file)
+    plt.close()
+    print(f"Confusion matrix saved to {output_file}")
 
 
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     score_model()
