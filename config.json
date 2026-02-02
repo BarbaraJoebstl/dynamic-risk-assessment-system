@@ -7,5 +7,6 @@
     "features": ["lastmonth_activity", "lastyear_activity", "number_of_employees"],
     "target": "exited",
     "uneeded_cols": ["corporation"],
-    "model_file": "trainedmodel.pkl"
+    "model_file": "trainedmodel.pkl",
+    "ingested_data": "finaldata.csv"
 }

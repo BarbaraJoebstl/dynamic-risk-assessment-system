@@ -27,7 +27,7 @@ def merge_multiple_dataframe():
 
         # store merged df
         os.makedirs(config.output_folder_path, exist_ok=True)
-        output_file = os.path.join(config.output_folder_path, "finaldata.csv")
+        output_file = os.path.join(config.output_folder_path, config.ingested_data)
         merged_df.to_csv(output_file, index=False)
 
         logger.info(f"Merged data written to: {output_file}")

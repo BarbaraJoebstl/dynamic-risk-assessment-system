@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import json
 import os
-
+from config import config
+from logger_config import logger
 
 
 ###############Load config.json and get path variables
